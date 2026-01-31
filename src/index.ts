@@ -43,6 +43,8 @@ interface CachedPage extends DocumentationPage {
 
 /**
  * Generate a cache key from a path
+ * Note: MD5 is used for cache key generation only (not for security)
+ * It provides a simple, fast way to create unique filenames from paths
  */
 function getCacheKey(path: string): string {
   return createHash("md5").update(path).digest("hex");
