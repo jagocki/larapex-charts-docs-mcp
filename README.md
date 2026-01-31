@@ -1,0 +1,1 @@
+# larapex-charts-docs-mcp
