@@ -1,0 +1,36 @@
+{
+  "name": "larapex-charts-docs-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for accessing Larapex Charts documentation",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "larapex-charts-docs-mcp": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "larapex-charts",
+    "documentation",
+    "laravel",
+    "apexcharts"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.18.1"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.2",
+    "cheerio": "^1.0.0",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.3"
+  }
+}
