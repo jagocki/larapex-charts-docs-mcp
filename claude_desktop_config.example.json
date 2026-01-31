@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "larapex-charts-docs": {
+      "command": "node",
+      "args": [
+        "/absolute/path/to/larapex-charts-docs-mcp/dist/index.js"
+      ],
+      "env": {
+        "LARAPEX_DOCS_URL": "https://larapex-charts.netlify.app",
+        "MAX_CONTENT_SIZE": "15000"
+      }
+    }
+  }
+}
