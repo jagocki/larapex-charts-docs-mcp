@@ -110,43 +110,20 @@ async function cachePage(path: string, page: DocumentationPage): Promise<void> {
 }
 
 // Known documentation pages for Larapex Charts
-// Based on typical chart library documentation structure
+// Based on the actual documentation structure at https://larapex-charts.netlify.app/
 const KNOWN_SECTIONS = {
-  "getting-started": ["installation", "basic-usage", "configuration"],
-  "chart-types": [
-    "line-chart",
-    "area-chart",
-    "bar-chart",
-    "horizontal-bar-chart",
-    "pie-chart",
-    "donut-chart",
-    "radialbar-chart",
-    "heatmap-chart",
-    "scatter-chart",
-    "polararea-chart",
+  "examples": [
+    "installation",
+    "simple-example",
+    "more-charts",
+    "customization",
   ],
-  "customization": [
-    "colors",
-    "labels",
-    "title-subtitle",
-    "legends",
-    "tooltips",
-    "grid",
-    "stroke",
-    "markers",
-    "animations",
-  ],
-  "advanced": [
-    "multiple-series",
-    "mixed-charts",
-    "realtime-updates",
-    "events",
-    "formatters",
-  ],
-  "guides": [
-    "blade-integration",
-    "livewire-integration",
-    "sparkline-charts",
+  "advance": [
+    "charts-with-eloquent",
+    "charts-with-inertiajs",
+    "charts-stubs",
+    "host-library",
+    "support",
   ],
 };
 
@@ -216,7 +193,7 @@ async function searchDocs(query: string): Promise<string[]> {
         page.toLowerCase().includes(searchQuery) ||
         section.toLowerCase().includes(searchQuery)
       ) {
-        results.push(`${section}/${page}`);
+        results.push(page);
       }
     }
   }
@@ -264,14 +241,14 @@ const tools: Tool[] = [
   {
     name: "get_page",
     description:
-      "Get the content of a specific Larapex Charts documentation page. Provide the path like 'chart-types/line-chart' or 'getting-started/installation'.",
+      "Get the content of a specific Larapex Charts documentation page. Provide the page name like 'installation', 'simple-example', or 'customization'.",
     inputSchema: {
       type: "object",
       properties: {
         path: {
           type: "string",
           description:
-            "Documentation page path (e.g., 'chart-types/line-chart', 'getting-started/installation')",
+            "Documentation page name (e.g., 'installation', 'simple-example', 'customization')",
         },
       },
       required: ["path"],
@@ -377,17 +354,17 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
       case "get_component": {
         const component = args.component as string;
-        let path = "";
+        let found = false;
 
         // Try to find the component in known sections
         for (const [section, pages] of Object.entries(KNOWN_SECTIONS)) {
           if (pages.includes(component.toLowerCase())) {
-            path = `${section}/${component.toLowerCase()}`;
+            found = true;
             break;
           }
         }
 
-        if (!path) {
+        if (!found) {
           return {
             content: [
               {
@@ -404,7 +381,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           };
         }
 
-        const page = await fetchDocPage(path);
+        // Use just the component name as the path (flat structure)
+        const page = await fetchDocPage(component.toLowerCase());
         return {
           content: [
             {

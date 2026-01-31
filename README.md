@@ -172,7 +172,7 @@ Search Larapex Charts documentation for chart types or topics.
 
 ```json
 {
-  "query": "line chart"
+  "query": "installation"
 }
 ```
 
@@ -182,13 +182,13 @@ Get documentation for a specific chart type or topic.
 
 **Parameters:**
 
-- `component` (string, required): Chart type or topic name (e.g., 'line-chart', 'pie-chart', 'installation')
+- `component` (string, required): Page name (e.g., 'installation', 'simple-example', 'customization')
 
 **Example:**
 
 ```json
 {
-  "component": "line-chart"
+  "component": "installation"
 }
 ```
 
@@ -204,13 +204,13 @@ Get the content of a specific documentation page.
 
 **Parameters:**
 
-- `path` (string, required): Documentation page path (e.g., 'chart-types/line-chart', 'getting-started/installation')
+- `path` (string, required): Documentation page name (e.g., 'installation', 'simple-example', 'customization')
 
 **Example:**
 
 ```json
 {
-  "path": "chart-types/line-chart"
+  "path": "installation"
 }
 ```
 
@@ -218,11 +218,8 @@ Get the content of a specific documentation page.
 
 Larapex Charts documentation is organized into the following categories:
 
-- **Getting Started** (3 pages): Installation, basic usage, configuration
-- **Chart Types** (10 chart types): Line, Area, Bar, Horizontal Bar, Pie, Donut, Radialbar, Heatmap, Scatter, PolarArea
-- **Customization** (9 topics): Colors, labels, title/subtitle, legends, tooltips, grid, stroke, markers, animations
-- **Advanced** (5 topics): Multiple series, mixed charts, realtime updates, events, formatters
-- **Guides** (3 guides): Blade integration, Livewire integration, sparkline charts
+- **Examples** (4 pages): Installation, simple-example, more-charts, customization
+- **Advance** (5 pages): Charts with Eloquent, Charts with InertiaJS, Charts Stubs, Host Library, Support
 
 ## Development
 
